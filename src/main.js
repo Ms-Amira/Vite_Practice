@@ -14,10 +14,11 @@ document.querySelector('#app').innerHTML = `
     </a>
     <h1>This is a Vite app!</h1>
     <div class="card">
+        <div id="userData"></div>
+    <div id="favfoods"></div>
       <button id="counter" type="button"></button>
     </div>
     <p class="read-the-docs">
-      Click on the Vite logo to learn more
     </p>
   </div>
 
@@ -45,6 +46,19 @@ console.log(stringifyUserData);
 const parseUserDate = JSON.parse(stringifyUserData);
 console.log(parseUserDate);
 
-// document.getElementById(userData).textContent = `Name: ${userData.firstName}, Age: ${userData.age}, Email: ${userData.email}, Phone: ${userData.phone}`;
+document.getElementById('userData').textContent = `Name: ${userData.firstName} ${userData.lastName}, Age: ${userData.age}, Email: ${userData.contact.email}, Phone: ${userData.contact.phone}`;
+
+const foodDiv = document.getElementById('favfoods');
+const ul = document.createElement('ul');
+
+userData.favoriteMeals.forEach(favFoods => {
+  const li = document.createElement('li');
+  const foodNode = document.createTextNode(favFoods);
+  li.appendChild(foodNode);
+  ul.appendChild(li);
+});
+
+foodDiv.appendChild(ul);
+
 
 setupCounter(document.querySelector('#counter'))
